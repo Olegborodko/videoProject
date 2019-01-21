@@ -1,19 +1,10 @@
-const express = require('express');
+var express = require('express');
+var app = express();
 
-const graphqlHTTP = require('express-graphql');
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+});
 
-const { schema } = require('./api/schema');
-
-// The root provides a resolver function for each API endpoint
-const root = {
-    videoLink: ({ link }) => link
-};
-
-const app = express();
-app.use('/graphql', graphqlHTTP({
-    schema,
-    rootValue: root,
-    graphiql: true,
-}));
-app.listen(4000);
-console.log('Running a GraphQL API server at localhost:4000/graphql');
+app.listen(3000, function () {
+    console.log('Example app listening on port 3000!');
+});
