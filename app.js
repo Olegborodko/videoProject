@@ -1,10 +1,10 @@
-var express = require('express');
-var app = express();
+require('dotenv').config();
+const express = require('express');
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
+const app = express();
+const port = process.env.PORT || 8080;
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-});
+app.use('/api', require('./api/users'));
+app.use('/api', require('./api/words'));
+
+app.listen(port);
